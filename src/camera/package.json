@@ -1,0 +1,33 @@
+{
+  "name": "camera",
+  "version": "1.0.0",
+  "description": "camera module of thingsJS_rover project",
+  "main": "camera.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tszngai/thingsjs_rover.git"
+  },
+  "keywords": [
+    "camera"
+  ],
+  "author": "Jay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tszngai/thingsjs_rover/issues"
+  },
+  "homepage": "https://github.com/tszngai/thingsjs_rover#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "dependencies": {
+    "@tensorflow-models/coco-ssd": "^1.0.0",
+    "@tensorflow-models/mobilenet": "^1.0.0",
+    "@tensorflow/tfjs": "^1.0.4",
+    "babel-core": "^6.26.3",
+    "jpeg-js": "^0.3.4"
+  }
+}
