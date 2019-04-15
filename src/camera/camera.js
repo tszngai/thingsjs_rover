@@ -4,6 +4,22 @@ var _mobilenet = require('@tensorflow-models/mobilenet');
 
 var mobilenet = _interopRequireWildcard(_mobilenet);
 
+var NodeWebcam = require( "node-webcam" );
+
+var opts = {
+  width: 1280,
+  height: 720,
+  quality: 100,
+  delay: 0,
+  saveShots: true,
+  output: 'jpeg',
+  device: false,
+  callbackReturn: 'location',
+  verbose: false }
+  
+var Webcam = NodeWebcam.create(opts);
+Webcam.capture( "../../img/capture.jpg", function( err, data ) {} );
+
 function _interopRequireWildcard(obj) {
     if (obj && obj.__esModule) {
         return obj;
@@ -29,11 +45,8 @@ function _interopRequireDefault(obj) {
 var cocoSsd = {};
 cocoSsd['RollupConfig'] = _rollupConfig2.default;
 
-console.log(1);
 var tf = require('@tensorflow/tfjs');
-console.log(2);
 
-//var mobilenet = require('./../node_modules/tensorflow-models/mobilenet');
 require('@tensorflow/tfjs-node');
 
 var fs = require('fs');
@@ -70,17 +83,8 @@ var imageToInput = function imageToInput(image, numChannels) {
 };
 
 var loadModel = async function loadModel(path) {
-    console.log(mobilenet);
-    console.log(33333333);
-    console.log(mobilenet.MobileNet);
     var mn = new mobilenet.MobileNet('1.00', '1.00');
     mn.path = 'file://' + path;
-    console.log('mn');
-    console.log(mn);
-    console.log('mn.path');
-    console.log(mn.path);
-    console.log('mn.load');
-    console.log(mn.load);
     await mn.load().catch(function (err) {
 	console.log('mn.load error!!!');
         return console.log(err);
@@ -96,8 +100,21 @@ var classify = async function classify(model, path) {
     var predictions = await mn_model.classify(input);
 
     console.log('classification results:', predictions);
+    // console.log(predictions[0]['className']);
+    return [predictions[0]['className'], predictions[1]['className'], predictions[2]['className']];
 };
 
-if (process.argv.length !== 4) throw new Error('incorrect arguments: node script.js <MODEL> <IMAGE_FILE>');
+if (process.argv.length !== 3) throw new Error('incorrect arguments: node script.js <MODEL> <IMAGE_FILE>');
 
-classify(process.argv[2], process.argv[3]);
+async function scan(){
+    var results = [];
+    while (!(process.argv[2] in results)){
+        await Webcam.capture( "../../img/capture.jpg", function( err, data ) {} );
+        results = await classify('model.json', '../../img/capture.jpg');
+    }
+    console.log('FOUND!!!!!!!!!!!!!!!!!!');
+}
+
+console.log('argv[2]');
+console.log(process.argv[2]);
+scan();

@@ -28,6 +28,8 @@
     "@tensorflow-models/mobilenet": "^1.0.0",
     "@tensorflow/tfjs": "^1.0.4",
     "babel-core": "^6.26.3",
-    "jpeg-js": "^0.3.4"
+    "jpeg-js": "^0.3.4",
+    "node-webcam": "^0.4.6",
+    "pi-camera": "^1.2.1"
   }
 }
