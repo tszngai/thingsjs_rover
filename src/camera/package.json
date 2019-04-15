@@ -1,8 +1,8 @@
 {
   "name": "camera",
   "version": "1.0.0",
-  "description": "camera module of thingsJS_rover project",
-  "main": "camera.js",
+  "description": "object detection module of thingsJS_rover project",
+  "main": "obj_detect.js",
   "scripts": {
     "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
   },
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/tszngai/thingsjs_rover.git"
   },
   "keywords": [
-    "camera"
+    "object detection"
   ],
   "author": "Jay",
   "license": "ISC",
